@@ -28,6 +28,20 @@ class DFSTest {
     }
 
     @Test
+    void testFindAllWithSameOriginAndDestination() {
+        List<Flight> flights = List.of(
+            new Flight("NYC", "CHI", 100.0),
+            new Flight("CHI", "LAX", 200.0),
+            new Flight("NYC", "LAX", 400.0)
+        );
+
+        List<Route> routes = DFS.findAllRoutes(flights, "NYC", "NYC");
+
+        assertEquals(1, routes.size(), "Invalid routes found. Program expect 2 routes!");
+        assertEquals(0, routes.getFirst().getTotalPrice(), "First route price is calculated incorrect");
+    }
+
+    @Test
     void testWithNoValidRoute() {
         List<Flight> flights = List.of(
             new Flight("NYC", "CHI", 100.0)
