@@ -42,6 +42,15 @@ class RouteRequestClientTest {
     }
 
     @Test
+    void testValidRequestWithMaxFlightsZero() {
+        String requestJson = "{\"origin\":\"SOF\", \"destination\":\"MLE\", \"maxFlights\":\"0\"}";
+        String response = RouteRequestClient.getResponse(requestJson);
+        String actualResponse = "[]";
+
+        assertEquals(response, actualResponse, "Response from server did not match the expected response when maxFlights is 1");
+    }
+
+    @Test
     void testValidRequestWithoutMaxFlights() {
         String requestJson = "{\"origin\":\"SOF\", \"destination\":\"MLE\"}";
         String response = RouteRequestClient.getResponse(requestJson);
